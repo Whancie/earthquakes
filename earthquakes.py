@@ -55,8 +55,14 @@ def get_year(earthquake):
 # With all the above functions defined, we can now call them and get the result
 data = get_data()
 write_to_file(data)
-find_earthqiuakes_in_year(data, 2000)
 # print(f"Loaded {count_earthquakes(data)}")
 # max_magnitude, max_location = get_maximum(data)
 # print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
-plot = ["data_count", "data_year"]
+frequency_per_year = [0] * 24
+for cyear in range(24):
+    for item in data['features']:
+        if get_year(item) == cyear + 2000:
+            frequency_per_year[cyear] += 1
+print(frequency_per_year)
+
+avg_mag_per_year = [0] * 24
