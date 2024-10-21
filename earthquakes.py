@@ -32,6 +32,10 @@ def get_data():
     # What format is the text in? How can we load the values?
     return json.loads(text)
 
+def write_to_file(data):
+    with open('dataFile.json', 'w') as output:
+        json.dump(data, output)
+
 def count_earthquakes(data):
     """Get the total number of earthquakes in the response."""
     return data
@@ -55,7 +59,7 @@ def get_maximum(data):
 
 # With all the above functions defined, we can now call them and get the result
 data = get_data()
-print(data)
+write_to_file(data)
 # print(f"Loaded {count_earthquakes(data)}")
 # max_magnitude, max_location = get_maximum(data)
 # print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
