@@ -37,13 +37,13 @@ def write_to_file(data):
     with open('dataFile.json', 'w') as output:
         json.dump(data, output)
 
-def count_earthquakes(data):
+def count_earthquakes(data_count):
     """Get the total number of earthquakes in the response."""
-    return data
+    return data_count["metadata"]["count"]
 
-def find_earthqiuakes_in_year(data, year):
+def find_earthqiuakes_in_year(data_year, year):
     result = []
-    print(data["features"][0]["properties"]["time"])
+    print(data_year["features"][0]["properties"]["time"])
     # print(datetime.fromtimestamp(data["features"][0]["properties"]["time"]))
     # for item in data["features"]:
         
@@ -53,7 +53,7 @@ def find_earthqiuakes_in_year(data, year):
 data = get_data()
 write_to_file(data)
 find_earthqiuakes_in_year(data, 2000)
-# print(f"Loaded {count_earthquakes(data)}")
+print(f"Loaded {count_earthquakes(data)}")
 # max_magnitude, max_location = get_maximum(data)
 # print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
-
+plot = ["data_count", "data_year"]
