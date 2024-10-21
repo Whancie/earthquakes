@@ -4,7 +4,7 @@
 # This is external library that you may need to install first.
 import requests
 import json
-from datetime import datetime
+from datetime import date
 
 def get_data():
     # With requests, we can ask the web service for the data.
@@ -41,18 +41,21 @@ def count_earthquakes(data):
     """Get the total number of earthquakes in the response."""
     return data
 
-def find_earthqiuakes_in_year(data, year):
-    result = []
-    print(data["features"][0]["properties"]["time"])
-    # print(datetime.fromtimestamp(data["features"][0]["properties"]["time"]))
-    # for item in data["features"]:
-        
-    return result
+def get_year(earthquake):
+    """Extract the year in which an earthquake happened."""
+    timestamp = earthquake['properties']['time']
+    # The time is given in a strange-looking but commonly-used format.
+    # To understand it, we can look at the documentation of the source data:
+    # https://earthquake.usgs.gov/data/comcat/index.php#time
+    # Fortunately, Python provides a way of interpreting this timestamp:
+    # (Question for discussion: Why do we divide by 1000?)
+    year = date.fromtimestamp(timestamp/1000).year
+    return year
 
 # With all the above functions defined, we can now call them and get the result
 data = get_data()
 write_to_file(data)
-find_earthqiuakes_in_year(data, 2000)
+quakes = data['features']
 # print(f"Loaded {count_earthquakes(data)}")
 # max_magnitude, max_location = get_maximum(data)
 # print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
