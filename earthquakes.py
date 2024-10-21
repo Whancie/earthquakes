@@ -34,7 +34,7 @@ def get_data():
 
 def count_earthquakes(data):
     """Get the total number of earthquakes in the response."""
-    return ...
+    return data
 
 
 def get_magnitude(earthquake):
@@ -55,7 +55,7 @@ def get_maximum(data):
 
 # With all the above functions defined, we can now call them and get the result
 data = get_data()
-print(data)
-# print(f"Loaded {count_earthquakes(data)}")
-# max_magnitude, max_location = get_maximum(data)
-# print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
+print(f"Loaded {count_earthquakes(data)}")
+max_magnitude, max_location = get_maximum(data)
+print(f"The strongest earthquake was at {max_location} with magnitude {max_magnitude}")
+
