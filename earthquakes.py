@@ -38,6 +38,7 @@ def write_to_file(data):
 
 def count_earthquakes(data):
     """Get the total number of earthquakes in the response."""
+    
     return data
 
 
